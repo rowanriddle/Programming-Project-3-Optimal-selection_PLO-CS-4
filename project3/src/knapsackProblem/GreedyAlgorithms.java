@@ -9,15 +9,27 @@ public class GreedyAlgorithms {
 		for(int i = 0; i < sortedExperiments.length; i++) {
 			for(int j = i + 1; j < sortedExperiments.length; j++) {
 				
-				if (experiments[j].getRating() > experiments[i].getRating()) {
+				if (sortedExperiments[j].getRating() > sortedExperiments[i].getRating()) {
 					
-					Experiment temp = experiments [i];
-					experiments [i] = experiments [j];
-					experiments [j] = temp;
+					Experiment temp = sortedExperiments [i];
+					sortedExperiments [i] = sortedExperiments [j];
+					sortedExperiments [j] = temp;
 				}
 			}
 		}
-		return null;
+		
+		Experiment[] result = new Experiment[12];
+		int index = 0;
+		int weight = 0;
+		
+		for (Experiment experiment : sortedExperiments) {
+			if(weight + experiment.getWeight() <= 700) {
+				result[index] = experiment;
+				index++;
+				weight += experiment.getWeight();
+			}
+		}
+		return result;
 		
 	}
 }
