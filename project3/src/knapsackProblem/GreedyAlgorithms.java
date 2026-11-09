@@ -1,5 +1,7 @@
 package knapsackProblem;
 
+import java.util.Arrays;
+
 public class GreedyAlgorithms {
 
 	public Experiment[] highestRatingFirst(Experiment[] experiments, int capacity) { 
@@ -29,7 +31,13 @@ public class GreedyAlgorithms {
 				weight += experiment.getWeight();
 			}
 		}
-		return result;
+		int count = 0;
+		for(Experiment exp: result) {
+			if(exp != null) count++;
+		}
+		Experiment[] resultsSized = Arrays.copyOfRange(result, 0, count);
+
+		return resultsSized;
 		
 	}
 }
