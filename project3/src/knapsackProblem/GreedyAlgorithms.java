@@ -18,8 +18,8 @@ public class GreedyAlgorithms {
 				throw new IllegalArgumentException("Experiment can't be null");
 			}
 			
-			if (experiment.getWeight() < 0) {
-				throw new IllegalArgumentException("Weight can't be negative");
+			if (experiment.getWeight() <= 0) {
+				throw new IllegalArgumentException("Weight must be positive");
 			}
 		}
 	}
@@ -41,7 +41,7 @@ public class GreedyAlgorithms {
 			}
 		}
 		
-		return resultArray(experiments, capacity);
+		return resultArray(sortedExperiments, capacity);
 		
 	}
 	
@@ -62,7 +62,7 @@ public class GreedyAlgorithms {
 			}
 		}
 		
-		return resultArray(experiments, capacity);
+		return resultArray(sortedExperiments, capacity);
 	}
 	
 	
@@ -93,7 +93,7 @@ public class GreedyAlgorithms {
 			}
 		}
 		
-		return resultArray(experiments, capacity);
+		return resultArray(sortedExperiments, capacity);
 		
 	}
 	
