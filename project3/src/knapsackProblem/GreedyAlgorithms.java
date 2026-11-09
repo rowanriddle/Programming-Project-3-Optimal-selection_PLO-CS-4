@@ -18,12 +18,12 @@ public class GreedyAlgorithms {
 			}
 		}
 		
-		Experiment[] result = new Experiment[12];
+		Experiment[] result = new Experiment[experiments.length];
 		int index = 0;
 		int weight = 0;
 		
 		for (Experiment experiment : sortedExperiments) {
-			if(weight + experiment.getWeight() <= 700) {
+			if(weight + experiment.getWeight() <= capacity) {
 				result[index] = experiment;
 				index++;
 				weight += experiment.getWeight();
