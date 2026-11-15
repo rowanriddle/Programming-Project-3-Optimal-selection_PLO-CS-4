@@ -1,6 +1,7 @@
 package knapsackProblem;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class GreedyAlgorithms {
 	
@@ -10,7 +11,7 @@ public class GreedyAlgorithms {
 		}
 		
 		if (capacity < 0) {
-			throw new IllegalArgumentException("Capacity can't negative");
+			throw new IllegalArgumentException("Capacity can't be negative");
 		}
 		
 		for (Experiment experiment : experiments) {
@@ -29,17 +30,12 @@ public class GreedyAlgorithms {
 		
 		Experiment[] sortedExperiments = experiments.clone();
 		
-		for(int i = 0; i < sortedExperiments.length; i++) {
-			for(int j = i + 1; j < sortedExperiments.length; j++) {	
+		Arrays.sort(sortedExperiments, Comparator
+			.comparingInt(Experiment::getRating)
+			.reversed()
+			.thenComparing(Experiment::getWeight)
+		);
 				
-				if (sortedExperiments[j].getRating() > sortedExperiments[i].getRating() || 
-						(sortedExperiments[i].getRating() == sortedExperiments[j].getRating() && sortedExperiments[j].getWeight() < sortedExperiments[i].getWeight())){
-							Experiment temp = sortedExperiments [i];
-							sortedExperiments [i] = sortedExperiments [j];
-							sortedExperiments [j] = temp;
-				}
-			}
-		}
 		
 		return resultArray(sortedExperiments, capacity);
 		
@@ -50,17 +46,10 @@ public class GreedyAlgorithms {
 		
 		Experiment[] sortedExperiments = experiments.clone();
 		
-		for(int i = 0; i < sortedExperiments.length; i++) {
-			for(int j = i + 1; j < sortedExperiments.length; j++) {	
-				if (sortedExperiments[j].getWeight() < sortedExperiments[i].getWeight() || 
-						(sortedExperiments[i].getWeight() == sortedExperiments[j].getWeight() && sortedExperiments[j].getRating() > sortedExperiments[i].getRating())){
-							Experiment temp = sortedExperiments [i];
-							sortedExperiments [i] = sortedExperiments [j];
-							sortedExperiments [j] = temp;
-				}
-				
-			}
-		}
+		Arrays.sort(sortedExperiments, 
+			Comparator.comparingInt(Experiment::getWeight)
+			.thenComparing(Comparator.comparingInt(Experiment::getRating).reversed())
+		);
 		
 		return resultArray(sortedExperiments, capacity);
 	}
@@ -77,20 +66,24 @@ public class GreedyAlgorithms {
 			scoreArray[i] = (double) sortedExperiments[i].getRating() / sortedExperiments[i].getWeight();
 		}
 		
-		for(int i = 0; i < scoreArray.length; i++) {
-			for(int j = i + 1; j < scoreArray.length; j++) {	
-				if (scoreArray[j] > scoreArray[i] ||
-						(scoreArray[j] == scoreArray[i] && sortedExperiments[j].getRating() > sortedExperiments[i].getRating())){
-					
-					double temp = scoreArray [i];
-					scoreArray [i] = scoreArray [j];
-					scoreArray [j] = temp;
-					
-					Experiment temporary = sortedExperiments [i];
-					sortedExperiments [i] = sortedExperiments [j];
-					sortedExperiments [j] = temporary;
-				}
-			}
+		CombinedArrays[] combinedArray = new CombinedArrays[sortedExperiments.length];
+		
+		//creates a new combined object of the experiment and its score at index i.
+		for(int i = 0; i < sortedExperiments.length; i++) {
+			combinedArray[i] = new CombinedArrays(sortedExperiments[i], scoreArray[i]); 
+		}
+		
+		//sorts the combined array by score, rating is used as a tie breaker. 
+		Arrays.sort(combinedArray, Comparator
+			.comparingDouble(CombinedArrays::getScore)
+			.reversed()
+			.thenComparing(Comparator.comparingInt((CombinedArrays e) -> e.getExperiment().getRating())
+			.reversed()) 
+		);
+		
+		//loops through combinedArray and replaces each index in sortedExperiments with its corresponding Experiment.
+		for (int i = 0; i < sortedExperiments.length; i++){
+			sortedExperiments[i] = combinedArray[i].getExperiment();
 		}
 		
 		return resultArray(sortedExperiments, capacity);
