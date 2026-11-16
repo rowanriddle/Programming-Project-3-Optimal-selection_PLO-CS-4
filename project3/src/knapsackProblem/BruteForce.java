@@ -14,8 +14,7 @@ package knapsackProblem;
  * Revised requirements:
  * 1. Maximum payload capacity of 700 kg.
  * 2. At most two of experiments 2, 3, and 7.
- * 3. A 7 kg thermal credit when experiments 6 and 12
- *    are both selected.
+ * 3. A 7 kg thermal credit when experiments 6 and 12 are both selected.
  * 4. Experiment 11a requires experiment 11.
  */
 
