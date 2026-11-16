@@ -11,13 +11,29 @@ import org.junit.jupiter.api.Test;
 
 class BruteForceTest {
 	
-	List<BruteForce.Solution> solutions = BruteForce.bruteForce();
+	Experiment[] experiments= {
+			new Experiment("1","Cloud Patterns", 36, 5),
+			new Experiment("2","Solar Flares", 264, 9),
+			new Experiment("3","Solar Power", 188, 6),
+			new Experiment("4","Binary Stars", 203, 8),
+			new Experiment("5","Relativity", 104, 8),
+			new Experiment("6","Seed Viability", 7, 4),
+			new Experiment("7","Sun Spots", 90, 2),
+			new Experiment("8","Mice Tumors", 65, 8),
+			new	Experiment("9","Microgravity Plant Growth", 75, 5),
+			new Experiment("10","Micrometeorites", 170, 9),
+			new Experiment("11","Cosmic Rays (Primary Band)", 80, 7),
+			new Experiment("11a","Cosmic Rays (Secondary Band", 10, 5),
+			new Experiment("12","Yeast Fermentation", 27, 4)	
+	};
+	
+	List<BruteForce.Solution> solutions = BruteForce.bruteForce(experiments, 700);
 	
 	private List<String> names(BruteForce.Solution solution){
 		List<String> names = new ArrayList<>();
 		
-		for(BruteForce.Experiment e : solution.chosen) {
-			names.add(e.name);
+		for(Experiment e : solution.chosen) {
+			names.add(e.getName());
 		}
 		return names;
 	}
@@ -43,20 +59,21 @@ class BruteForceTest {
 		int expectedWeight = 654;
 		int expectedRating = 52;
 		
-		BruteForce.Solution results = solutions.get(0);
+		BruteForce.Solution results = solutions.get(1);
 		assertEquals(expectedNames, names(results));
 		assertEquals(expectedWeight, results.totalWeight);
 		assertEquals(expectedRating, results.totalRating);
 		
 	}
 	
+	@Test
 	void testBruteForce_thirdBestSolution() {
 		List<String> expectedNames = Arrays.asList("Cloud Patters", "Solar Power", "Relativity", "Seed Viability", "Mice Tumors", "Micrometeorites", "Cosmic Rays", "Yeast Fermentation");
 		
 		int expectedWeight = 672;
 		int expectedRating = 51;
 		
-		BruteForce.Solution results = solutions.get(0);
+		BruteForce.Solution results = solutions.get(2);
 		assertEquals(expectedNames, names(results));
 		assertEquals(expectedWeight, results.totalWeight);
 		assertEquals(expectedRating, results.totalRating);

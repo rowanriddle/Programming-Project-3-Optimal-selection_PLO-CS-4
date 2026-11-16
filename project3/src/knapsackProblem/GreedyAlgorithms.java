@@ -1,5 +1,13 @@
 package knapsackProblem;
 
+/*
+ * Team Name: Team 2
+ * Team Members: Matthew Meek, Lia Day, Rowan Bailey
+ * Course: CS 2430- 501
+ * Project: Programming Project 3 - Fall 2026
+ *
+ */
+
 import java.util.Arrays;
 import java.util.Comparator;
 
