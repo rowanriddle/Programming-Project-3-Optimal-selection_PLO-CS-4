@@ -5,7 +5,7 @@ package knapsackProblem;
  * Team Members: Matthew Meek, Lia Day, Rowan Bailey
  * Course: CS 2430- 501
  * Project: Programming Project 3 - Fall 2026
- * Author : Lia Day
+ * Author: Lia Day
  */
 
 public class ScoresExperiments {

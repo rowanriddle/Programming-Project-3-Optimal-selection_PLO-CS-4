@@ -11,7 +11,7 @@ import knapsackProblem.BruteForce.Solution;
  * Team Members: Matthew Meek, Lia Day, Rowan Bailey
  * Course: CS 2430- 501
  * Project: Programming Project 3 - Fall 2026
- *
+ * Author: Lia Day and Rowan Bailey
  */
 
 public class Main {
