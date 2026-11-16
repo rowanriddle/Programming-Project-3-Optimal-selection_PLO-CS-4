@@ -28,6 +28,9 @@ public class GreedyAlgorithms {
 	public Experiment[] highestRatingFirst(Experiment[] experiments, int capacity) { 
 		validateInputs(experiments, capacity);
 		
+		if(experiments.length == 0) {
+			throw new IllegalArgumentException("experiments empty");
+		}
 		Experiment[] sortedExperiments = experiments.clone();
 		
 		Arrays.sort(sortedExperiments, Comparator
