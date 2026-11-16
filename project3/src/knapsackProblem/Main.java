@@ -5,18 +5,19 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Experiment[] experiments= {
-				new Experiment("Cloud Patterns", 36, 5),
-				new Experiment("Solar Flares", 264, 9),
-				new Experiment("Solar Power", 188, 6),
-				new Experiment("Binary Stars", 203, 8),
-				new Experiment("Relativity", 104, 8),
-				new Experiment("Seed Viability", 7, 4),
-				new Experiment("Sun Spots", 90, 2),
-				new Experiment("Mice Tumors", 65, 8),
-				new	Experiment("Microgravity Plant Growth", 75, 5),
-				new Experiment("Micrometeorites", 170, 9),
-				new Experiment("Cosmic Rays", 80, 7),
-				new Experiment("Yeast Fermentation", 27, 4)	
+				new Experiment("1","Cloud Patterns", 36, 5),
+				new Experiment("2","Solar Flares", 264, 9),
+				new Experiment("3","Solar Power", 188, 6),
+				new Experiment("4","Binary Stars", 203, 8),
+				new Experiment("5","Relativity", 104, 8),
+				new Experiment("6","Seed Viability", 7, 4),
+				new Experiment("7","Sun Spots", 90, 2),
+				new Experiment("8","Mice Tumors", 65, 8),
+				new	Experiment("9","Microgravity Plant Growth", 75, 5),
+				new Experiment("10","Micrometeorites", 170, 9),
+				new Experiment("11","Cosmic Rays (Primary Band)", 80, 7),
+				new Experiment("11a","Cosmic Rays (Secondary Band", 10, 5),
+				new Experiment("12","Yeast Fermentation", 27, 4)	
 		};
 		
 		int totalCapacity = 700;
