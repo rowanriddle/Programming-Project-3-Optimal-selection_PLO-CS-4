@@ -33,6 +33,13 @@ public class GreedyAlgorithms {
 		}
 	}
 
+	/**
+	 * Selects experiments based on highest rating to the lowest. 
+	 * Experiments with  equal ratings are selected by lowest weight first.  
+	 * @param experiments to be evaluated.
+	 * @param capacity max capacity of the payload
+	 * @return a list of chosen experiments not exceeding the 700kg limit.
+	 */
 	public Experiment[] highestRatingFirst(Experiment[] experiments, int capacity) { 
 		validateInputs(experiments, capacity);
 		
@@ -52,6 +59,13 @@ public class GreedyAlgorithms {
 		
 	}
 	
+	/**
+	 * Selects experiments from the lowest weight to the highest. 
+	 * Experiments with  equal weight are selected by highest rating first.  
+	 * @param experiments to be evaluated.
+	 * @param capacity max capacity of the payload
+	 * @return a list of chosen experiments not exceeding the 700kg limit.
+	 */
 	public Experiment[] lightestFirst(Experiment[] experiments, int capacity) { 
 		validateInputs(experiments, capacity);
 		
@@ -65,7 +79,14 @@ public class GreedyAlgorithms {
 		return results(sortedExperiments, capacity);
 	}
 	
-	
+	/**
+	 * Selects experiments based on the highest rating to weight ratio.
+	 * Each ratio/score is determined by dividing its rating by weight.
+	 * Experiments with  equal score are selected by highest rating.  
+	 * @param experiments to be evaluated.
+	 * @param capacity max capacity of the payload
+	 * @return a list of chosen experiments not exceeding the 700kg limit.
+	 */
 	public Experiment[] bestRatingToWeightFirst(Experiment[] experiments, int capacity) { 
 		validateInputs(experiments, capacity);
 		
@@ -101,6 +122,14 @@ public class GreedyAlgorithms {
 		
 	}
 	
+	/**
+	 * Selects results from the sorted array without exceeding the max capacity.
+	 * Checks each experiment against manifest rules and applies a thermal mass credit if applicable. 
+	 * 
+	 * @param experiments sorted array of experiments
+	 * @param capacity max capacity allowed in kg
+	 * @return an array containing the selected experiments
+	 */
 	private Experiment[] results(Experiment[] experiments, int capacity) {
 		Experiment[] result = new Experiment[experiments.length];
 		int index = 0;
@@ -122,6 +151,14 @@ public class GreedyAlgorithms {
 		return Arrays.copyOf(result, index);
 	}
 	
+	/**
+	 * Checks manifest for the following applicable rules.
+	 * Solar instrument count must be less than three.
+	 * Experiment 11a must also include experiment 11 in the manifest.
+	 * 
+	 * @param experiments array of sorted experiments 
+	 * @return a boolean value representing the validity of the manifest.
+	 */
 	public boolean isManifestValid (Experiment[] experiments) {
 		int solarInstrumentCount = 0;
 		boolean includesExp11 = false;
