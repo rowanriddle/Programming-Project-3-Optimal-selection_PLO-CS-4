@@ -73,6 +73,10 @@ public class Main {
 		}
 
 		//Run all three greedy strategies
+		
+		System.out.println("\n======================================");
+        System.out.println(" Greedy Algorithms Results");
+        System.out.println("======================================");
 
 		GreedyAlgorithms greedyAlgs = new GreedyAlgorithms();
 
@@ -80,9 +84,9 @@ public class Main {
 		Experiment[] lightestFirst = greedyAlgs.lightestFirst(experiments, totalCapacity);
 		Experiment[] bestRatingToWeightRatio = greedyAlgs.bestRatingToWeightFirst(experiments, totalCapacity);
 
-		printResults("Greedy: Highest Rating First", highestRatedResults);
-		printResults("Greedy: Lightest First", lightestFirst);
-		printResults("Greedy: Best Rating To Weight First", bestRatingToWeightRatio);
+		printResults("Highest Rating First", highestRatedResults);
+		printResults("Lightest First", lightestFirst);
+		printResults("Best Rating To Weight First", bestRatingToWeightRatio);
 
 
 		// Compare greedy results with the optimal rating.
@@ -138,6 +142,9 @@ public class Main {
                 + experiment.getName()
                 + " | " + experiment.getWeight() + " kg"
                 + " | Rating: " + experiment.getRating());
+            
+            totalWeight += experiment.getWeight();
+            totalRating +=experiment.getRating();
         }
         
         System.out.println("Total Weight: " + totalWeight + " kg");
